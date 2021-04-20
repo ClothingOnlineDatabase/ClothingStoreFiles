@@ -5,6 +5,9 @@ package ClothingShop;
 
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 
 /*
@@ -80,6 +83,12 @@ public class UserRegister extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Mobile Number:");
 
+        mobileTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                mobileTFKeyTyped(evt);
+            }
+        });
+
         registerBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +102,11 @@ public class UserRegister extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Sign in");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -214,33 +228,119 @@ public class UserRegister extends javax.swing.JFrame {
         String areacode=areacodeTF.getText();
         String mobile=mobileTF.getText();
         
-        try
+        if(checkEnteredTF())
+        {
+            if(!checkEmail(email))
+            {
+                try
         {
         con = java.sql.DriverManager.getConnection(dbURL, "", "");
         
-        ps = con.prepareStatement("INSERT INTO Customers VALUES(?,?,?,?,?,?)");  //creating a prepared statement for ps
-            ps.setString(1, null);
-            ps.setString(2,fullname);
-            ps.setString(3,pass);
-            ps.setString(4,email);
-            ps.setString(5,areacode);
-            ps.setString(6,mobile);
+        PreparedStatement ps = con.prepareStatement("INSERT INTO Customers (UserName,UserPassword,UserEmail,UserAreaCode,UserMobileNumber) VALUES(?,?,?,?,?)");  //creating a prepared statement for ps
+            
+            ps.setString(1,fullname);
+            ps.setString(2,pass);
+            ps.setString(3,email);
+            ps.setString(4,areacode);
+            ps.setString(5,mobile);
             
             
             if(ps.executeUpdate() > 0){
                 
                 JOptionPane.showMessageDialog(null, "New User Added");
+            }else{
+                JOptionPane.showMessageDialog(null, "Please Check The Data You Have Entered");
             }
             //new startQuiz(userID).setVisible(true);
             
         }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
+        catch (java.sql.SQLException sqlex) {
+            System.err.println("Check your SQL " + sqlex);
+            sqlex.printStackTrace();
         }
+            }
+        }
+        
+        
         
     }//GEN-LAST:event_registerBtnActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        UserLogin ul = new UserLogin();
+        ul.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void mobileTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobileTFKeyTyped
+        
+        // Only allow numbers to be entered in keyboard
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_mobileTFKeyTyped
+
+    public boolean checkEnteredTF()
+    {
+        String fullname=fullNameTF.getText();
+        String pass=String.valueOf(passwordTF.getPassword());
+        String re_pass=String.valueOf(passwordRETF.getPassword());
+        String email=emailTF.getText();
+        String areacode=areacodeTF.getText();
+        String mobile=mobileTF.getText();
+        
+        //checking if text fields are empty
+        if(fullname.trim().equals("")|| pass.trim().equals("") || re_pass.trim().equals("") || email.trim().equals("")
+           || areacode.trim().equals("") || mobile.trim().equals("") )
+            
+        {
+            JOptionPane.showMessageDialog(null, "One or More Text Fields Are Empty", "Empty Text Fields",2);
+            return false;
+        }   
+        //check if both passwords are equal
+        else if(!pass.equals(re_pass))
+        {
+            JOptionPane.showMessageDialog(null, "Password Entered Doesn't Match", "Re-Enter Password",2);
+            return false;
+        }
+        //If everything entered is fine
+        else{
+            return true;
+        }
+    }
+    
+    //Function to check if user email is already in database
+    public boolean checkEmail(String email){
+        
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean email_already = false;
+        
+        try{
+            con = java.sql.DriverManager.getConnection(dbURL, "", "");
+        
+        ps = con.prepareStatement("SELECT * FROM Customers WHERE UserEmail = ?");
+        ps.setString(1,email);
+        rs = ps.executeQuery();
+            
+        if(rs.next())
+        {
+            email_already = true;
+            JOptionPane.showMessageDialog(null, "Please try sign in,","Email is already in Use",2);
+        }
+            
+        }
+        catch (java.sql.SQLException sqlex) {
+            System.err.println("Check your SQL " + sqlex);
+            sqlex.printStackTrace();
+        }
+        
+        return email_already;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
