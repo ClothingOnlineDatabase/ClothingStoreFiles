@@ -372,7 +372,7 @@ public class StockManagement extends javax.swing.JFrame {
                 
                 if(add.executeUpdate() > 0){
                 
-                JOptionPane.showMessageDialog(null, "Product Edited Successfully");
+                JOptionPane.showMessageDialog(null, "Product Edited Successfully!");
             }else{
                 JOptionPane.showMessageDialog(null, "Please Check The Data You Have Entered");
             }
