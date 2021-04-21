@@ -174,6 +174,8 @@ public class UserLogin extends javax.swing.JFrame {
                 cushome.setVisible(true);
                 //close current page
                 this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Invalid Email / Password","Login Error",2);
             }
             
         }
