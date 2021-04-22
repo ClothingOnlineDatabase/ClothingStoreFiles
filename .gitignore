@@ -13,3 +13,5 @@ nbdist/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/netbeans
+*.accdb
+FE2Project.laccdb
