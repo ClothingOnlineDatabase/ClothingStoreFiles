@@ -39,13 +39,13 @@ public class Employee_Login_Page extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        backBTN = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton2 = new javax.swing.JButton();
+        loginBTN = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -63,13 +63,13 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         jLabel1.setText("Employee Login ");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 335, 23));
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backBTN.setText("Back");
+        backBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backBTNActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
+        jPanel3.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 660, 50));
 
@@ -85,12 +85,12 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel5.setText("Password:");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Login ");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        loginBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        loginBTN.setText("Login ");
+        loginBTN.setToolTipText("");
+        loginBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                loginBTNActionPerformed(evt);
             }
         });
 
@@ -117,7 +117,7 @@ public class Employee_Login_Page extends javax.swing.JFrame {
                             .addComponent(jTextField1)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(121, 121, 121)
-                        .addComponent(jButton2)))
+                        .addComponent(loginBTN)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -132,13 +132,13 @@ public class Employee_Login_Page extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(loginBTN)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 340, 150));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ClothingShop/meeting.JPG"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\tmurd\\Documents\\GitHub\\ClothingStoreFiles\\src\\ClothingShop\\meeting.JPG")); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 650, 340));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 650, 330));
@@ -169,56 +169,56 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
         // TODO add your handling code here:
         dispose();
-        LandingPage lp = new LandingPage();
+        Landing_Page lp = new Landing_Page();
         lp.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_backBTNActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        
+
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void loginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTNActionPerformed
+        // TODO add your handling code here:
         //Get users email & password
-        String employee = jTextField1.getText();
+        String employeeName = jTextField1.getText();
         String pass = String.valueOf(jPasswordField1.getPassword());
-        
+
         //checking if fields have been filled in
-        if(employee.equals("")||pass.equals("")){
-            
-            JOptionPane.showMessageDialog(rootPane, "Invalid Employee UserName/Password","Login Error",2);
+        if(employeeName.equals("")||pass.equals("")){
+
+            JOptionPane.showMessageDialog(rootPane, "Invalid Employee ID/Password","Login Error",1);
         }
         else{
-        try{
-            con = java.sql.DriverManager.getConnection(dbURL, "", "");
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Employees WHERE EmployeeUserName=? and EmployeePassword=?");
-            ps.setString(1,employee);
-            ps.setString(2, pass);
-            rs = ps.executeQuery();
-            
-            if(rs.next()){
-                
-                CustomerHomePage cushome = new CustomerHomePage();
-                cushome.setVisible(true);
-                //close current page
-                this.dispose();
-            }else
-            {
-                JOptionPane.showMessageDialog(null, "Invalid UserName / Password","Login Error",2);
+            try{
+                con = java.sql.DriverManager.getConnection(dbURL, "", "");
+                PreparedStatement ps = con.prepareStatement("SELECT * FROM Employees WHERE EmployeeUserName=? and EmployeePassword=?");
+                ps.setString(1,employeeName);
+                ps.setString(2, pass);
+                rs = ps.executeQuery();
+
+                if(rs.next()){
+
+                    CustomerHomePage cushome = new CustomerHomePage();
+                    cushome.setVisible(true);
+                    //close current page
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Employee UserName / Password","Login Error",2);
+                }
+
             }
-            
-            
+            catch(java.sql.SQLException sqlex) {
+                System.err.println("Check your SQL " + sqlex);
+                sqlex.printStackTrace();
+            }
         }
-        catch(java.sql.SQLException sqlex) {
-            System.err.println("Check your SQL " + sqlex);
-            sqlex.printStackTrace();
-            }    
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_loginBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,8 +256,7 @@ public class Employee_Login_Page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton backBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -269,5 +268,6 @@ public class Employee_Login_Page extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton loginBTN;
     // End of variables declaration//GEN-END:variables
 }

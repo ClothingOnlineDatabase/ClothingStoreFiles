@@ -145,7 +145,7 @@ public class UserLogin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        LandingPage lp = new LandingPage();
+        Landing_Page lp = new Landing_Page();
         lp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

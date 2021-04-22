@@ -62,6 +62,8 @@ public class StockManagement extends javax.swing.JFrame {
         stockTBL = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         editBTN = new javax.swing.JButton();
+        refreshBTN = new javax.swing.JButton();
+        backBTN = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,6 +151,20 @@ public class StockManagement extends javax.swing.JFrame {
             }
         });
 
+        refreshBTN.setText("Refresh");
+        refreshBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBTNActionPerformed(evt);
+            }
+        });
+
+        backBTN.setText("BACK");
+        backBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,17 +215,26 @@ public class StockManagement extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(refreshBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(133, 133, 133))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(375, 375, 375))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(375, 375, 375))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(21, 21, 21)
+                .addComponent(backBTN)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(supplierTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,8 +262,13 @@ public class StockManagement extends javax.swing.JFrame {
                     .addComponent(editBTN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(refreshBTN)))
                 .addGap(106, 106, 106))
         );
 
@@ -372,7 +402,7 @@ public class StockManagement extends javax.swing.JFrame {
                 
                 if(add.executeUpdate() > 0){
                 
-                JOptionPane.showMessageDialog(null, "Product Edited Successfully!");
+                JOptionPane.showMessageDialog(null, "Product Edited Successfully");
             }else{
                 JOptionPane.showMessageDialog(null, "Please Check The Data You Have Entered");
             }
@@ -389,6 +419,18 @@ public class StockManagement extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_editBTNActionPerformed
+
+    private void refreshBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBTNActionPerformed
+        // TODO add your handling code here:
+        getTable();
+    }//GEN-LAST:event_refreshBTNActionPerformed
+
+    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        EmployeeHome eh = new EmployeeHome();
+        eh.setVisible(true);
+    }//GEN-LAST:event_backBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,6 +497,7 @@ public class StockManagement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBTN;
+    private javax.swing.JButton backBTN;
     private javax.swing.JTextField brandTF;
     private javax.swing.JButton clearBTN;
     private javax.swing.JTextField colourTF;
@@ -472,6 +515,7 @@ public class StockManagement extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField priceTF;
     private javax.swing.JTextField quantityTF;
+    private javax.swing.JButton refreshBTN;
     private javax.swing.JButton removeBTN;
     private javax.swing.JComboBox<String> sizeCB;
     private javax.swing.JTable stockTBL;
