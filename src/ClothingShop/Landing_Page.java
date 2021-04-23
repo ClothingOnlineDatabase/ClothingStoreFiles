@@ -159,7 +159,7 @@ public class Landing_Page extends javax.swing.JFrame {
     private void userBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userBTNActionPerformed
         // TODO add your handling code here:
         dispose();
-        UserLogin ul= new UserLogin();
+        User_Login_Page ul= new User_Login_Page();
         ul.setVisible(true);
         
     }//GEN-LAST:event_userBTNActionPerformed
