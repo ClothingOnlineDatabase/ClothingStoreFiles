@@ -9,13 +9,27 @@ package ClothingShop;
  *
  * @author tmurd
  */
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
+
 public class Overdue_Accounts extends javax.swing.JFrame {
 
     /**
      * Creates new form Overdue_Accounts
      */
+    
+    private static final String dbURL = "jdbc:ucanaccess://FE2ProjectDB.accdb";
+    private static java.sql.Connection con;
+    private static java.sql.PreparedStatement ps;
+    private DefaultTableModel model = new DefaultTableModel(new String[]{"Rental ID", "Suit ID", "User ID", "Rent Date", "Due Date","Suit Returned"}, 0);
+    
     public Overdue_Accounts() {
         initComponents();
+        getTable();
+        jTextField1.setEditable(false);
     }
 
     /**
@@ -27,21 +41,64 @@ public class Overdue_Accounts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        rentTBL = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        rentTBL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(rentTBL);
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jTextField1.setText("Check Suit Rentals");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(129, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(218, 218, 218))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,7 +134,39 @@ public class Overdue_Accounts extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void getTable() {
+        model.setRowCount(0);
+                        
+
+        try {
+        con = java.sql.DriverManager.getConnection(dbURL, "", "");
+
+            PreparedStatement showTable = con.prepareStatement("SELECT * FROM Rental");
+            ResultSet rs = showTable.executeQuery();
+            while (rs.next()) {
+                int rentalID = rs.getInt("RentalID");
+                String itemID = rs.getString("ItemID");
+                String userID = rs.getString("UserID");
+                String rentDate = rs.getString("rentDate");
+                String dueDate = rs.getString("dueDate");
+                String returnDate = rs.getString("returnSuit");
+                
+
+                model.addRow(new Object[]{rentalID, itemID, userID, rentDate, dueDate , returnDate});
+            }
+            rentTBL.setModel(model);
+            rs.close();
+            showTable.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable rentTBL;
     // End of variables declaration//GEN-END:variables
 }

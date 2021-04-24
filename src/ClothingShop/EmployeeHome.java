@@ -124,7 +124,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("View Stocks Levels");
 
-        overdueBTN.setText("Overdue Acc's");
+        overdueBTN.setText("Rentals");
         overdueBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 overdueBTNActionPerformed(evt);
@@ -135,7 +135,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         jLabel4.setText("Manage Users");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Check Balances ");
+        jLabel5.setText("Check Overdue");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

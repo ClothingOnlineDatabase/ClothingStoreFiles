@@ -18,7 +18,7 @@ public class Stock_Management extends javax.swing.JFrame {
     /**
      * Creates new form Stock_Management
      */
-    private static final String dbURL = "jdbc:ucanaccess://FE2Project.accdb";
+    private static final String dbURL = "jdbc:ucanaccess://FE2ProjectDB.accdb";
     private static java.sql.Connection con;
     private static java.sql.PreparedStatement ps;
     private DefaultTableModel model = new DefaultTableModel(new String[]{"ItemID", "Brand", "Type", "Colour", "Size","Price","Quantity"}, 0);
