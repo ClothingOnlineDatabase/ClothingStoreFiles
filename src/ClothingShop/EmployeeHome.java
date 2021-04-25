@@ -106,7 +106,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(204, 204, 204));
         jPanel2.setToolTipText("");
 
-        stockBTN.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        stockBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         stockBTN.setText("Stock Management  ");
         stockBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +114,7 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
+        userBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         userBTN.setText("User Managment");
         userBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +125,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("View Stocks Levels");
 
+        overdueBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         overdueBTN.setText("Rentals");
         overdueBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,8 +237,8 @@ public class EmployeeHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         dispose();
-        Overdue_Accounts oa = new Overdue_Accounts();
-        oa.setVisible(true);
+        Check_Suit_Rentals csr = new Check_Suit_Rentals();
+        csr.setVisible(true);
     }//GEN-LAST:event_overdueBTNActionPerformed
 
     private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed

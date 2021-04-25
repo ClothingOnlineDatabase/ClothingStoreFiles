@@ -307,8 +307,8 @@ public class User_Login_Page extends javax.swing.JFrame {
             
             if(rs.next()){
                 
-                CustomerHomePage cushome = new CustomerHomePage();
-                cushome.setVisible(true);
+                User_Login_Home hm = new User_Login_Home();
+                hm.setVisible(true);
                 //close current page
                 this.dispose();
             }else{

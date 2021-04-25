@@ -8,7 +8,7 @@ package ClothingShop;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import java.awt.*;
+
 
 /**
  *
@@ -291,7 +291,7 @@ public class Customer_Register_Account extends javax.swing.JFrame {
     private void signinBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinBTNActionPerformed
         // TODO add your handling code here:
         dispose();
-        UserLogin ul = new UserLogin();
+        User_Login_Page ul = new User_Login_Page();
         ul.setVisible(true);
         
     }//GEN-LAST:event_signinBTNActionPerformed
@@ -310,6 +310,7 @@ public class Customer_Register_Account extends javax.swing.JFrame {
         {
             if(!checkEmail(email))
             {
+              
                 try
         {
         con = java.sql.DriverManager.getConnection(dbURL, "", "");
