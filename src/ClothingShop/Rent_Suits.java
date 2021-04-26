@@ -65,10 +65,10 @@ public class Rent_Suits extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 21)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Suit Rental ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 130, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 150, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 50));
 
@@ -182,8 +182,8 @@ public class Rent_Suits extends javax.swing.JFrame {
     private void closeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBTNActionPerformed
         // TODO add your handling code here:
         dispose();
-        User_Login_Home ulh = new User_Login_Home();
-        ulh.setVisible(true);
+        CustomerHomePage ch = new CustomerHomePage();
+        ch.setVisible(true);
         
     }//GEN-LAST:event_closeBTNActionPerformed
 
@@ -201,7 +201,7 @@ public class Rent_Suits extends javax.swing.JFrame {
         {
          con = java.sql.DriverManager.getConnection(dbURL, "", "");
          Statement st=con.createStatement();
-         ResultSet rs = st.executeQuery("SELECT  * FROM Clothes WHERE ItemID = '"+itemID+"'");  //creating a prepared statement for ps
+        ResultSet rs = st.executeQuery("SELECT  * FROM Clothes WHERE ItemID = '"+itemID+"'");  //creating a prepared statement for ps
         
         if(rs.next())
         {

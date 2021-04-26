@@ -7,8 +7,7 @@ package ClothingShop;
 
 /**
  *
- * @author Aaron GUI
- * @author Thomas Java Application
+ * @author Aaron
  */
 
 import java.sql.PreparedStatement;
@@ -24,6 +23,7 @@ public class Check_Suit_Rentals extends javax.swing.JFrame {
     
     private static final String dbURL = "jdbc:ucanaccess://FE2ProjectDB.accdb";
     private static java.sql.Connection con;
+    private static java.sql.PreparedStatement ps;
     private DefaultTableModel model = new DefaultTableModel(new String[]{"Rental ID", "Suit ID", "User ID", "Rent Date", "Due Date","Suit Returned"}, 0);
     
     public Check_Suit_Rentals() {
@@ -56,7 +56,6 @@ public class Check_Suit_Rentals extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 153));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        backBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         backBTN.setText("Back");
         backBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

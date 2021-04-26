@@ -58,12 +58,11 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Employee Login ");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 150, 23));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 335, 23));
 
-        backBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         backBTN.setText("Back");
         backBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,11 +78,11 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 7, true));
         jPanel5.setForeground(new java.awt.Color(204, 204, 204));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel4.setText("User Name:");
         jLabel4.setToolTipText("");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel5.setText("Password:");
 
         loginBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -137,7 +136,7 @@ public class Employee_Login_Page extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 340, 160));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 340, 150));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\tmurd\\Documents\\GitHub\\ClothingStoreFiles\\src\\ClothingShop\\meeting.JPG")); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 650, 340));
@@ -147,7 +146,7 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 153));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Have A Great Day ! !");
 
@@ -156,9 +155,9 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(233, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141))
+                .addContainerGap(205, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,15 +196,15 @@ public class Employee_Login_Page extends javax.swing.JFrame {
         else{
             try{
                 con = java.sql.DriverManager.getConnection(dbURL, "", "");
-                ps = con.prepareStatement("SELECT * FROM Employees WHERE EmployeeUserName=? and EmployeePassword=?");
+                PreparedStatement ps = con.prepareStatement("SELECT * FROM Employees WHERE EmployeeUserName=? and EmployeePassword=?");
                 ps.setString(1,employeeName);
                 ps.setString(2, pass);
                 rs = ps.executeQuery();
 
                 if(rs.next()){
 
-                    EmployeeHome ehome = new EmployeeHome();
-                    ehome.setVisible(true);
+                    CustomerHomePage cushome = new CustomerHomePage();
+                    cushome.setVisible(true);
                     //close current page
                     this.dispose();
                 }else{
