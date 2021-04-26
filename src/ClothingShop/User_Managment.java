@@ -7,7 +7,8 @@ package ClothingShop;
 
 /**
  *
- * @author Aaron
+ * @author Aaron GUI
+ * @author Thomas Java Application
  */
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,9 +20,8 @@ public class User_Managment extends javax.swing.JFrame {
      * Creates new form User_Management
      */
     
-    private static final String dbURL = "jdbc:ucanaccess://FE2Project.accdb";
+    private static final String dbURL = "jdbc:ucanaccess://FE2ProjectDB.accdb";
     private static java.sql.Connection con;
-    private static java.sql.PreparedStatement ps;
     private DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Full Name", "Email", "AreaCode", "Mobile Number"}, 0);
     
     public User_Managment() {
@@ -66,10 +66,11 @@ public class User_Managment extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 153));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("User Management ");
 
+        backBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         backBTN.setText("Back");
         backBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,19 +83,20 @@ public class User_Managment extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(257, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196)
+                .addContainerGap(300, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(215, 215, 215)
                 .addComponent(backBTN)
                 .addGap(33, 33, 33))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBTN)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(19, 19, 19)
+                .addComponent(backBTN))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
@@ -235,6 +237,7 @@ public class User_Managment extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        refreshBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         refreshBTN.setText("Refresh");
         refreshBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,15 +376,15 @@ public class User_Managment extends javax.swing.JFrame {
         else{
             try{
                 con = java.sql.DriverManager.getConnection(dbURL, "", "");
-                PreparedStatement add = con.prepareStatement("UPDATE Customers SET UserName = ?,UserPassword = ?,UserEmail = ?,UserAreaCode = ?,UserMobileNumber = ? WHERE UserID = ?");  //creating a prepared statement for ps
-                add.setString(1, fullname);
-                add.setString(2, pass);
-                add.setString(3, email);
-                add.setString(4, areacode);
-                add.setString(5, mobile);
-                add.setInt(6, Integer.parseInt(userID));
+                PreparedStatement edit = con.prepareStatement("UPDATE Customers SET UserName = ?,UserPassword = ?,UserEmail = ?,UserAreaCode = ?,UserMobileNumber = ? WHERE UserID = ?");  //creating a prepared statement for ps
+                edit.setString(1, fullname);
+                edit.setString(2, pass);
+                edit.setString(3, email);
+                edit.setString(4, areacode);
+                edit.setString(5, mobile);
+                edit.setInt(6, Integer.parseInt(userID));
                 
-                if(add.executeUpdate() > 0){
+                if(edit.executeUpdate() > 0){
                 
                 JOptionPane.showMessageDialog(null, "User Edited Successfully");
             }else{
@@ -415,9 +418,9 @@ public class User_Managment extends javax.swing.JFrame {
             
             try{
                 con = java.sql.DriverManager.getConnection(dbURL, "", "");
-                PreparedStatement add = con.prepareStatement("DELETE FROM Customers WHERE UserID = ?");  //creating a prepared statement for ps
-                add.setInt(1, Integer.parseInt(userID));
-                int rowsAffected = add.executeUpdate();
+                PreparedStatement re = con.prepareStatement("DELETE FROM Customers WHERE UserID = ?");  //creating a prepared statement for ps
+                re.setInt(1, Integer.parseInt(userID));
+                int rowsAffected = re.executeUpdate();
                 
                 if( rowsAffected == 1){
                 

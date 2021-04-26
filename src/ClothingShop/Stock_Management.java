@@ -11,7 +11,8 @@ import java.sql.*;
 
 /**
  *
- * @author Aaron
+ * @author Aaron GUI
+ * @author Thomas Java Application
  */
 public class Stock_Management extends javax.swing.JFrame {
 
@@ -20,7 +21,6 @@ public class Stock_Management extends javax.swing.JFrame {
      */
     private static final String dbURL = "jdbc:ucanaccess://FE2ProjectDB.accdb";
     private static java.sql.Connection con;
-    private static java.sql.PreparedStatement ps;
     private DefaultTableModel model = new DefaultTableModel(new String[]{"ItemID", "Brand", "Type", "Colour", "Size","Price","Quantity"}, 0);
     
     public Stock_Management() {
@@ -73,10 +73,11 @@ public class Stock_Management extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 153));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Stock Management ");
 
+        StockManBackBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         StockManBackBTN.setText("Back");
         StockManBackBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,9 +90,9 @@ public class Stock_Management extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196)
+                .addContainerGap(272, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(222, 222, 222)
                 .addComponent(StockManBackBTN)
                 .addGap(33, 33, 33))
         );
@@ -286,6 +287,7 @@ public class Stock_Management extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
+        refreshBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         refreshBTN.setText("Refresh");
         refreshBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,7 +305,7 @@ public class Stock_Management extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(refreshBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(refreshBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(138, 138, 138))
@@ -405,9 +407,9 @@ public class Stock_Management extends javax.swing.JFrame {
             
             try{
                 con = java.sql.DriverManager.getConnection(dbURL, "", "");
-                PreparedStatement add = con.prepareStatement("DELETE FROM Clothes WHERE ItemID = ?");  //creating a prepared statement for ps
-                add.setInt(1, Integer.parseInt(clothesID));
-                int rowsAffected = add.executeUpdate();
+                PreparedStatement re = con.prepareStatement("DELETE FROM Clothes WHERE ItemID = ?");  //creating a prepared statement for ps
+                re.setInt(1, Integer.parseInt(clothesID));
+                int rowsAffected = re.executeUpdate();
                 
                 if( rowsAffected == 1){
                 
@@ -451,17 +453,17 @@ public class Stock_Management extends javax.swing.JFrame {
         else{
             try{
                 con = java.sql.DriverManager.getConnection(dbURL, "", "");
-                PreparedStatement add = con.prepareStatement("UPDATE Clothes SET SupplierID = ?,Type = ?,Colour = ?,Brand = ?,Size = ?,Price = ?,AvailableAmount = ? WHERE ItemID = ?");  //creating a prepared statement for ps
-                add.setString(1, supplier);
-                add.setString(2, type);
-                add.setString(3, colour);
-                add.setString(4, brand);
-                add.setString(5, size);
-                add.setString(6, price);
-                add.setString(7, quantity);
-                add.setInt(8, Integer.parseInt(clothesID));
+                PreparedStatement edit = con.prepareStatement("UPDATE Clothes SET SupplierID = ?,Type = ?,Colour = ?,Brand = ?,Size = ?,Price = ?,AvailableAmount = ? WHERE ItemID = ?");  //creating a prepared statement for ps
+                edit.setString(1, supplier);
+                edit.setString(2, type);
+                edit.setString(3, colour);
+                edit.setString(4, brand);
+                edit.setString(5, size);
+                edit.setString(6, price);
+                edit.setString(7, quantity);
+                edit.setInt(8, Integer.parseInt(clothesID));
                 
-                if(add.executeUpdate() > 0){
+                if(edit.executeUpdate() > 0){
                 
                 JOptionPane.showMessageDialog(null, "Product Edited Successfully");
             }else{

@@ -7,7 +7,8 @@ package ClothingShop;
 
 /**
  *
- * @author Aaron
+ * @author Aaron GUI
+ * @author Thomas Java Application
  */
 public class User_Login_Home extends javax.swing.JFrame {
 
@@ -48,20 +49,26 @@ public class User_Login_Home extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Please Select From The Opitions Below");
+        jLabel3.setText("Please Select From The Options Below");
 
-        backBTN.setText("Back");
+        backBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        backBTN.setText("Log Out");
+        backBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(41, 41, 41)
                 .addComponent(backBTN)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,8 +187,8 @@ public class User_Login_Home extends javax.swing.JFrame {
     private void purchaseBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseBTNActionPerformed
         // TODO add your handling code here:
         dispose();
-        Purchases_Page pp = new Purchases_Page();
-        pp.setVisible(true);
+        Purchase_Home ph = new Purchase_Home();
+        ph.setVisible(true);
         
     }//GEN-LAST:event_purchaseBTNActionPerformed
 
@@ -198,10 +205,19 @@ public class User_Login_Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         dispose();
-        Suit_Return sr = new Suit_Return();
+        Suit_Return1 sr = new Suit_Return1();
         sr.setVisible(true);
         
     }//GEN-LAST:event_returnBTNActionPerformed
+
+    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
+        // TODO add your handling code here:
+        
+        dispose();
+        User_Login_Page us = new User_Login_Page();
+        us.setVisible(true);
+        
+    }//GEN-LAST:event_backBTNActionPerformed
 
     /**
      * @param args the command line arguments

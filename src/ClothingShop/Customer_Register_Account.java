@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Aaron GUI
- *  Thomas Application
+ *  Thomas Java Application
  */
 public class Customer_Register_Account extends javax.swing.JFrame {
 
@@ -21,7 +21,7 @@ public class Customer_Register_Account extends javax.swing.JFrame {
      * Creates new form Customer_Register_Account
      */
     
-    private static final String dbURL = "jdbc:ucanaccess://FE2Project.accdb";
+    private static final String dbURL = "jdbc:ucanaccess://FE2ProjectDB.accdb";
     private static java.sql.Connection con;
     private static java.sql.PreparedStatement ps;
     
@@ -72,10 +72,11 @@ public class Customer_Register_Account extends javax.swing.JFrame {
         jPanel1.setToolTipText("");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Create A New Account With Us");
 
+        backBTN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         backBTN.setText("Back ");
         backBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,9 +89,9 @@ public class Customer_Register_Account extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(backBTN)
                 .addContainerGap())
         );
@@ -110,19 +111,19 @@ public class Customer_Register_Account extends javax.swing.JFrame {
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 7, true));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Full Name:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Password:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Re-enter Password:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Email:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Area-code:");
 
         registerBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -141,7 +142,7 @@ public class Customer_Register_Account extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Mobile Number:");
 
         mobileTF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -249,7 +250,7 @@ public class Customer_Register_Account extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 153));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Enjoy the Journey !");
 
@@ -315,16 +316,16 @@ public class Customer_Register_Account extends javax.swing.JFrame {
         {
         con = java.sql.DriverManager.getConnection(dbURL, "", "");
         
-        PreparedStatement ps = con.prepareStatement("INSERT INTO Customers (UserName,UserPassword,UserEmail,UserAreaCode,UserMobileNumber) VALUES(?,?,?,?,?)");  //creating a prepared statement for ps
+        PreparedStatement ps1 = con.prepareStatement("INSERT INTO Customers (UserName,UserPassword,UserEmail,UserAreaCode,UserMobileNumber) VALUES(?,?,?,?,?)");  //creating a prepared statement for ps
             
-            ps.setString(1,fullname);
-            ps.setString(2,pass);
-            ps.setString(3,email);
-            ps.setString(4,areacode);
-            ps.setString(5,mobile);
+            ps1.setString(1,fullname);
+            ps1.setString(2,pass);
+            ps1.setString(3,email);
+            ps1.setString(4,areacode);
+            ps1.setString(5,mobile);
             
             
-            if(ps.executeUpdate() > 0){
+            if(ps1.executeUpdate() > 0){
                 
                 JOptionPane.showMessageDialog(null, "New User Added");
             }else{
@@ -417,7 +418,7 @@ public class Customer_Register_Account extends javax.swing.JFrame {
     //Function to check if user email is already in database
     public boolean checkEmail(String email){
         
-        PreparedStatement ps;
+       
         ResultSet rs;
         boolean email_already = false;
         
@@ -431,7 +432,7 @@ public class Customer_Register_Account extends javax.swing.JFrame {
         if(rs.next())
         {
             email_already = true;
-            JOptionPane.showMessageDialog(null, "Please try sign in,","Email is already in Use",2);
+            JOptionPane.showMessageDialog(null, "Please Try Sign In,","Email Is Already In Use",2);
         }
             
         }
